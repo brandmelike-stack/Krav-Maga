@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0A0A0A;
+  --bg-2: #151515;
+  --bg-3: #1C1C1E;
+  --txt: #FFFFFF;
+  --txt-2: #A0A0A5;
+  --txt-3: #6C6C70;
+  --amber: #FFC107;
+  --amber-hover: #EAA221;
+  --olive: #3E4A3D;
+  --danger: #FF3B30;
+  --line: rgba(255,255,255,0.10);
+}
+
+* { border-color: var(--line); }
+
+html { scroll-behavior: auto; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--txt);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--amber); color: #000; }
+
+.font-display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.01em; }
+
+.overline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.72rem;
+  color: var(--amber);
+}
+
+/* Grain / noise overlay */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Tactical grid background */
+.tac-grid {
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Buttons */
+.btn-amber {
+  background: var(--amber);
+  color: #000;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.95rem 2rem;
+  border-radius: 0;
+  transition: background-color .25s ease, transform .25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.btn-amber:hover { background: var(--amber-hover); transform: translateY(-2px); }
+
+.btn-ghost {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.95rem 2rem;
+  border-radius: 0;
+  transition: border-color .25s ease, color .25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.btn-ghost:hover { border-color: var(--amber); color: var(--amber); }
+
+/* Inputs */
+.tac-input {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 0;
+  padding: 0.85rem 1rem;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: border-color .2s ease;
+}
+.tac-input:focus { outline: none; border-color: var(--amber); }
+.tac-input::placeholder { color: var(--txt-3); }
+
+.tac-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--txt-2);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+/* Corner crosshair marks */
+.crosshair { position: relative; }
+.crosshair::before, .crosshair::after {
+  content: "";
+  position: absolute;
+  width: 10px; height: 10px;
+  border-color: var(--amber);
+  opacity: 0;
+  transition: opacity .25s ease;
+}
+.crosshair::before { top: -1px; left: -1px; border-top: 2px solid; border-left: 2px solid; }
+.crosshair::after { bottom: -1px; right: -1px; border-bottom: 2px solid; border-right: 2px solid; }
+.crosshair:hover::before, .crosshair:hover::after { opacity: 1; }
+
+.img-grade { filter: grayscale(35%) contrast(1.12) brightness(0.85); transition: filter .5s ease; }
+.img-grade:hover { filter: grayscale(0%) contrast(1.05) brightness(1); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

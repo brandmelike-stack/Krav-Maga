@@ -1,0 +1,164 @@
+{
+  "theme": "dark",
+  "brand_name": "360 Degree Secure",
+  "founder": "Anjan Gogoi",
+  "archetype": "THE PERFORMANCE PRO (Elite Athleticism & Precision) mixed with Tactical Military",
+  "typography": {
+    "headings": {
+      "family": "Bebas Neue, sans-serif",
+      "weight": "400",
+      "tracking": "tracking-normal",
+      "usage": "H1, H2, H3, large hero texts, bold statement titles"
+    },
+    "body": {
+      "family": "Inter, sans-serif",
+      "weight": "400, 500, 600",
+      "tracking": "tracking-normal",
+      "usage": "Body copy, descriptions, standard form labels"
+    },
+    "accents_labels": {
+      "family": "Inter, sans-serif",
+      "weight": "700",
+      "tracking": "tracking-[0.2em]",
+      "usage": "Overlines, uppercase tags, small CTAs"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#0A0A0A",
+      "secondary": "#151515",
+      "tertiary": "#1C1C1E"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A0A0A5",
+      "muted": "#6C6C70"
+    },
+    "accent": {
+      "primary": "#FFC107",
+      "hover": "#EAA221",
+      "tactical_olive": "#3E4A3D",
+      "danger": "#FF3B30"
+    },
+    "border": {
+      "default": "rgba(255, 255, 255, 0.1)",
+      "focus": "#FFC107"
+    }
+  },
+  "visual_enhancers": {
+    "surfaces": "Grid Borders for a 'Technical/Tactical' look. Container border-collapse style with subtle right/bottom borders (border-border/40). Flat Solid surfaces. No glassmorphism as it makes things look too soft.",
+    "textures": "Subtle noise/grain overlay on dark backgrounds to give a gritty, tactical feel.",
+    "borders": "1px solid strokes, sharp edges. No large border-radius (max 4px or 0px for brutalist tactical feel).",
+    "shadows": "Minimal. Rely on 2px 'Inner Glow' highlights or sharp geometric shadows if any.",
+    "hover_states": "Grid lines illuminating, accent color highlights, sharp transforms (e.g., -translate-y-1 with harsh drop shadow)."
+  },
+  "layouts": {
+    "spacing": "Generous Spacing (p-8 to p-24) to let the typography and high-contrast imagery breathe. High density only in admin dashboard.",
+    "grid": "Bento Grid Mode A (Tetris) for marketing pages. Asymmetry, Visual Tension.",
+    "alignment": "Left-aligned for all serious/tactical data, avoiding center-everything. Asymmetrical balance."
+  },
+  "motion": {
+    "libraries": [
+      "framer-motion",
+      "lenis"
+    ],
+    "hero_reveal": "Kinetic masked line-by-line reveal on load. Use framer-motion with delay staggering.",
+    "scroll": "Smooth momentum scrolling (lenis).",
+    "interactions": "Hover states with tactical crosshairs or grid line highlights. Subtle parallax on hero background.",
+    "marquee": "Slow editorial marquee for 'Nothing is Impossible to a Willing Mind' or '360 DEGREE SECURE' running across the background. Use react-fast-marquee."
+  },
+  "pages_blueprint": [
+    {
+      "name": "Home",
+      "sections": [
+        "Kinetic Hero: Large bold text 'Nothing is Impossible to a Willing Mind', dark dramatic background, line-by-line reveal.",
+        "Marquee: Slow moving tactical text.",
+        "Specializations Grid: Asymmetrical bento grid highlighting Krav Maga, Corporate, Law Enforcement.",
+        "Upcoming Workshops: List with date, location, bold amber CTAs.",
+        "Why Choose Us: Numbered manifesto chapters, heavy typography.",
+        "CTA Section: Bold military style."
+      ]
+    },
+    {
+      "name": "About Us",
+      "sections": [
+        "Mission & Philosophy: Text heavy, tactical layout.",
+        "Definition of Safety: Large typography statement.",
+        "Meet the Founder (Anjan Gogoi): Profile, gritty portrait style."
+      ]
+    },
+    {
+      "name": "Krav Maga Dojo",
+      "sections": [
+        "Hero: Action shot, grappling.",
+        "Curriculum Details: Grid borders, sharp styling.",
+        "Enquiry Form: Free trial focus."
+      ]
+    },
+    {
+      "name": "Workshops",
+      "sections": [
+        "Tabs (Shadcn customized): Corporate Workshops, Combat & Self-Defence.",
+        "Workshop Cards: Bold dates, sharp edges.",
+        "Enquiry Form: Corporate/Institutional focus."
+      ]
+    },
+    {
+      "name": "Law Enforcement & UAC Training",
+      "sections": [
+        "Hero: Police/Military training tactical shot.",
+        "Overview: Serious, high-contrast, data-driven look.",
+        "Contact CTA: Law enforcement enquiry."
+      ]
+    },
+    {
+      "name": "Gallery",
+      "sections": [
+        "Grid: Masonry or tight bento grid of action shots. Hover effects."
+      ]
+    },
+    {
+      "name": "Contact Us",
+      "sections": [
+        "Grid Layout: Left column contact details, Right column General Enquiry form."
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "sections": [
+        "Login: Simple, dark, tactical.",
+        "Dashboard Grid (Mode B): Dense data, CRUD for workshops, enquiries, gallery, content blocks."
+      ]
+    }
+  ],
+  "image_urls": {
+    "hero_krav_maga": "https://images.unsplash.com/photo-1655558846882-fa55132d6c20?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwxfHxrcmF2JTIwbWFnYSUyMHRyYWluaW5nJTIwZGFyayUyMGRyYW1hdGljfGVufDB8fHx8MTc4NjM1NjgzM3ww&ixlib=rb-4.1.0&q=85",
+    "grappling_action": "https://images.unsplash.com/photo-1783942767599-4ea5f8f742b7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHwzfHxrcmF2JTIwbWFnYSUyMHRyYWluaW5nJTIwZGFyayUyMGRyYW1hdGljfGVufDB8fHx8MTc4NjM1NjgzM3ww&ixlib=rb-4.1.0&q=85",
+    "martial_arts_dark": "https://images.unsplash.com/photo-1525198104776-f6e8a873f9b7?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHw0fHxtYXJ0aWFsJTIwYXJ0cyUyMGRhcmt8ZW58MHx8fHwxNzg2MzU2ODM4fDA&ixlib=rb-4.1.0&q=85",
+    "law_enforcement_1": "https://images.unsplash.com/photo-1668724982255-1a3e0c72b814?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwyfHx0YWN0aWNhbCUyMG1pbGl0YXJ5JTIwdHJhaW5pbmd8ZW58MHx8fHwxNzg2MzU2ODMzfDA&ixlib=rb-4.1.0&q=85",
+    "law_enforcement_2": "https://images.unsplash.com/photo-1557081999-0ea3e23579d2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NjV8MHwxfHNlYXJjaHwxfHxwb2xpY2UlMjB0cmFpbmluZyUyMHRhY3RpY2FsfGVufDB8fHx8MTc4NjM1NjgzN3ww&ixlib=rb-4.1.0&q=85",
+    "tactical_aiming": "https://images.unsplash.com/photo-1566566713478-131a85da90b2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzB8MHwxfHNlYXJjaHw0fHxzZWxmJTIwZGVmZW5zZSUyMHRhY3RpY2FsfGVufDB8fHx8MTc4NjM1NjgzN3ww&ixlib=rb-4.1.0&q=85"
+  },
+  "component_instructions": {
+    "navigation": "Solid background (Deep Obsidian #0A0A0A) with bottom border (1px border-white/10). Logo is text-based '360 DEGREE SECURE' in Bebas Neue. Desktop must show links, NO hamburger.",
+    "buttons": "Sharp corners (rounded-none). Primary: bg-[#FFC107] text-black hover:bg-[#EAA221]. Secondary: transparent with 1px border-white/20 hover:border-[#FFC107] hover:text-[#FFC107]. Include subtle crosshair or line animations on hover.",
+    "forms": "Use customized Shadcn UI forms. Sharp inputs, no rounded corners (rounded-none). Focus ring in amber/gold. Labels in uppercase tracking-wide.",
+    "cards": "Cardless look or sharp rectangular blocks with subtle border (border-white/10). Background #151515.",
+    "tabs": "Custom Shadcn tabs. Active state gets bottom border of amber, sharp transitions."
+  },
+  "accessibility": {
+    "contrast": "Ensure all text on dark backgrounds meets APCA standards. Amber on black is highly visible, but ensure gray text (#A0A0A5) is legible.",
+    "motion": "Respect prefers-reduced-motion for all framer-motion animations.",
+    "testing": "All interactive elements MUST include data-testid (e.g., data-testid='hero-cta-button', data-testid='enquiry-submit-button')."
+  },
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do NOT use 'transition: all'. Use specific transitions.",
+    "Do NOT center align the app container in index.css / App.css.",
+    "Create depth through z-index and border styling, not soft shadows.",
+    "Use Phosphor icons (bold or duotone) for tactical feel.",
+    "No generic AI emojis. Absolutely forbidden.",
+    "Strictly adhere to the dark tactical theme: #0A0A0A base, #FFC107 accent.",
+    "Ensure 'Bebas Neue' is imported and used for all major headings. Do not fallback to standard sans if possible.",
+    "Use Sonner for toasts (sharp edged customization)."
+  ]
+}
