@@ -17,6 +17,7 @@ export const IMAGES = {
   train3: "/train3.jpg",
   train4: "/train4.jpg",
   train5: "/train5.jpg",
+  kravTechnique: "/krav-technique.webp",
 };
 
 export const NAV = [

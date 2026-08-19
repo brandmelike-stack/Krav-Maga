@@ -24,8 +24,9 @@ export default function KravMaga() {
     <div data-testid="krav-maga-page">
       <PageHero overline="The Dojo" title="Krav Maga" subtitle="The world's most practical combat system — developed for real violence, taught for real people." image={IMAGES.grappling} />
 
-      <section className="py-20 md:py-28 max-w-[1400px] mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16">
+      <section className="py-20 md:py-28 max-w-[1400px] mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16 items-start">
         <Reveal>
+          <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="h-14 w-auto object-contain mb-8" data-testid="kma-logo" />
           <div className="overline mb-3">What It Is</div>
           <h2 className="font-display text-4xl lg:text-5xl leading-[0.95] mb-5">No rules. No rituals. Just what works.</h2>
           <p className="text-white/60 leading-relaxed mb-4">Krav Maga is a combat system built on instinct, aggression and efficiency. There are no belts to chase and no forms to memorize — only techniques designed to neutralize threats and get you home safe.</p>
@@ -35,18 +36,26 @@ export default function KravMaga() {
             <div className="overline mb-4 flex items-center gap-2"><Users className="w-4 h-4" /> Who Can Join</div>
             <p className="text-white/60">Men, women, teens and students — no prior experience required. Every session is scaled to your fitness and comfort level.</p>
           </div>
-        </Reveal>
 
-        <Reveal delay={0.12}>
-          <div className="bg-[#151515] border border-white/10 p-8">
+          <div className="mt-10 bg-[#151515] border border-white/10 p-8">
             <div className="overline mb-6">What You'll Learn</div>
-            <ul className="space-y-4">
+            <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
               {LEARN.map((l) => (
                 <li key={l} className="flex items-start gap-3 text-white/75">
                   <Check className="w-5 h-5 text-[#FFC107] mt-0.5 shrink-0" /> {l}
                 </li>
               ))}
             </ul>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <div className="relative crosshair">
+            <img src={IMAGES.kravTechnique} alt="Krav Maga wrist-lock technique" className="w-full object-cover img-grade border border-white/10 aspect-[3/4]" data-testid="krav-technique-image" />
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] to-transparent p-6 pt-16">
+              <div className="overline">Live Technique</div>
+              <div className="font-display text-3xl leading-none">Control. Leverage. Escape.</div>
+            </div>
           </div>
         </Reveal>
       </section>
