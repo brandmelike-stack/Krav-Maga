@@ -22,7 +22,7 @@ const BATCHES = [
 export default function KravMaga() {
   return (
     <div data-testid="krav-maga-page">
-      <PageHero overline="The Dojo" title="Krav Maga" subtitle="The world's most practical combat system — developed for real violence, taught for real people." image={IMAGES.grappling} />
+      <PageHero overline="The Dojo" title="Krav Maga" subtitle="The world's most practical combat system — developed for real violence, taught for real people." image={IMAGES.kravDojo} />
 
       <section className="py-20 md:py-28 max-w-[1400px] mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16 items-start">
         <Reveal>
