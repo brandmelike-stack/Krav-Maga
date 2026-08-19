@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Marquee from "react-fast-marquee";
-import { ArrowRight, Shield, Swords, Building2, Target, ChevronRight } from "lucide-react";
+import { ArrowRight, Shield, Swords, Building2, Target, ChevronRight, Quote } from "lucide-react";
 import { MaskLine, Reveal } from "../components/Reveal";
 import { CTABand } from "../components/Shared";
 import { IMAGES, CATEGORY_LABELS } from "../lib/data";
@@ -24,12 +24,14 @@ const WHY = [
 
 export default function Home() {
   const [workshops, setWorkshops] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.3], [0, 120]);
   const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 1.12]);
 
   useEffect(() => {
     api.get("/workshops").then((r) => setWorkshops(r.data.slice(0, 3))).catch(() => {});
+    api.get("/testimonials").then((r) => setTestimonials(r.data)).catch(() => {});
   }, []);
 
   return (
@@ -152,6 +154,29 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {testimonials.length > 0 && (
+        <section className="py-20 md:py-28 bg-[#101010] border-y border-white/10" data-testid="testimonials">
+          <div className="max-w-[1400px] mx-auto px-5 md:px-8">
+            <div className="overline mb-3">What They Say</div>
+            <h2 className="font-display text-5xl lg:text-6xl leading-[0.95] max-w-2xl mb-14">Trusted by students, corporates & forces.</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {testimonials.slice(0, 6).map((t, i) => (
+                <Reveal key={t.id} delay={i * 0.08}>
+                  <div className="bg-[#0A0A0A] border border-white/10 p-7 h-full flex flex-col crosshair" data-testid="testimonial-card">
+                    <Quote className="w-8 h-8 text-[#FFC107] mb-4" strokeWidth={1.6} />
+                    <p className="text-white/75 leading-relaxed flex-1">“{t.quote}”</p>
+                    <div className="mt-6 pt-5 border-t border-white/10">
+                      <div className="font-display text-2xl leading-none">{t.name}</div>
+                      {t.role && <div className="overline mt-1">{t.role}</div>}
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <CTABand />
     </div>

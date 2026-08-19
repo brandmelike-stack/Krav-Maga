@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
-import { Crosshair, LogOut, Download, Trash2, Plus, Inbox, Calendar, Image as ImageIcon, FileText, ExternalLink, X } from "lucide-react";
+import { Crosshair, LogOut, Download, Trash2, Plus, Inbox, Calendar, Image as ImageIcon, FileText, ExternalLink, X, Quote } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import api from "../../lib/api";
 import { CATEGORY_LABELS } from "../../lib/data";
@@ -17,6 +17,7 @@ const TABS = [
   { k: "enquiries", l: "Enquiries", icon: Inbox },
   { k: "workshops", l: "Workshops", icon: Calendar },
   { k: "gallery", l: "Gallery", icon: ImageIcon },
+  { k: "testimonials", l: "Testimonials", icon: Quote },
   { k: "content", l: "Content", icon: FileText },
 ];
 
@@ -28,12 +29,13 @@ export default function Dashboard() {
   const [workshops, setWorkshops] = useState([]);
   const [gallery, setGallery] = useState([]);
   const [content, setContent] = useState({});
+  const [testimonials, setTestimonials] = useState([]);
 
   const load = useCallback(async () => {
-    const [e, w, g, c] = await Promise.all([
-      api.get("/enquiries"), api.get("/workshops?all=true"), api.get("/gallery"), api.get("/content"),
+    const [e, w, g, c, t] = await Promise.all([
+      api.get("/enquiries"), api.get("/workshops?all=true"), api.get("/gallery"), api.get("/content"), api.get("/testimonials?all=true"),
     ]);
-    setEnquiries(e.data); setWorkshops(w.data); setGallery(g.data); setContent(c.data);
+    setEnquiries(e.data); setWorkshops(w.data); setGallery(g.data); setContent(c.data); setTestimonials(t.data);
   }, []);
 
   useEffect(() => { load().catch(() => toast.error("Failed to load data")); }, [load]);
@@ -59,7 +61,10 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#0A0A0A] grain" data-testid="admin-dashboard">
       <header className="border-b border-white/10 bg-[#0A0A0A] sticky top-0 z-40">
         <div className="max-w-[1500px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2"><Crosshair className="w-5 h-5 text-[#FFC107]" strokeWidth={2.2} /><span className="font-display text-xl tracking-wide">360<span className="text-[#FFC107]">°</span> CONSOLE</span></Link>
+          <div className="flex items-center gap-4">
+            <Link to="/" className="flex items-center gap-2"><Crosshair className="w-5 h-5 text-[#FFC107]" strokeWidth={2.2} /><span className="font-display text-xl tracking-wide">360<span className="text-[#FFC107]">°</span> CONSOLE</span></Link>
+            <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="hidden md:block h-7 w-auto object-contain opacity-80 border-l border-white/10 pl-4" data-testid="admin-kma-logo" />
+          </div>
           <div className="flex items-center gap-4">
             <span className="text-white/40 text-sm hidden sm:block">{user?.email}</span>
             <button onClick={doLogout} className="btn-ghost py-2 px-4 text-xs" data-testid="logout-button"><LogOut className="w-4 h-4" /> Logout</button>
@@ -91,6 +96,7 @@ export default function Dashboard() {
         {tab === "enquiries" && <Enquiries data={enquiries} updateStatus={updateStatus} del={delEnquiry} exportCsv={exportCsv} />}
         {tab === "workshops" && <Workshops data={workshops} reload={load} />}
         {tab === "gallery" && <Gallery data={gallery} reload={load} />}
+        {tab === "testimonials" && <Testimonials data={testimonials} reload={load} />}
         {tab === "content" && <Content data={content} reload={load} />}
       </div>
     </div>
@@ -239,6 +245,64 @@ function Gallery({ data, reload }) {
           </div>
         ))}
         {data.length === 0 && <p className="text-white/40">No media yet.</p>}
+      </div>
+    </div>
+  );
+}
+
+const EMPTY_T = { name: "", role: "", quote: "", published: true };
+
+function Testimonials({ data, reload }) {
+  const [form, setForm] = useState(EMPTY_T);
+  const [editId, setEditId] = useState(null);
+  const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
+  const save = async (e) => {
+    e.preventDefault();
+    try {
+      if (editId) await api.put(`/testimonials/${editId}`, form);
+      else await api.post("/testimonials", form);
+      toast.success(editId ? "Updated" : "Added");
+      setForm(EMPTY_T); setEditId(null); reload();
+    } catch { toast.error("Save failed"); }
+  };
+  const edit = (t) => { setForm({ name: t.name, role: t.role || "", quote: t.quote, published: t.published }); setEditId(t.id); };
+  const del = async (id) => { await api.delete(`/testimonials/${id}`); toast.success("Deleted"); reload(); };
+  const togglePub = async (t) => { await api.put(`/testimonials/${t.id}`, { ...t, published: !t.published }); reload(); };
+
+  return (
+    <div data-testid="testimonials-panel">
+      <h2 className="font-display text-3xl mb-5">Testimonials ({data.length})</h2>
+      <form onSubmit={save} className="bg-[#151515] border border-white/10 p-6 mb-6 space-y-4" data-testid="testimonial-form">
+        <div className="flex justify-between items-center">
+          <h3 className="font-display text-2xl">{editId ? "Edit" : "New"} Testimonial</h3>
+          {editId && <button type="button" onClick={() => { setForm(EMPTY_T); setEditId(null); }}><X className="w-5 h-5 text-white/50" /></button>}
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div><label className="tac-label">Name</label><input className="tac-input" required value={form.name} onChange={set("name")} data-testid="t-name" /></div>
+          <div><label className="tac-label">Role / Title</label><input className="tac-input" value={form.role} onChange={set("role")} placeholder="Student, Guwahati" data-testid="t-role" /></div>
+        </div>
+        <div><label className="tac-label">Quote</label><textarea className="tac-input min-h-[90px]" required value={form.quote} onChange={set("quote")} data-testid="t-quote" /></div>
+        <label className="flex items-center gap-2 text-white/70 text-sm"><input type="checkbox" checked={form.published} onChange={(e) => setForm((f) => ({ ...f, published: e.target.checked }))} /> Published</label>
+        <button type="submit" className="btn-amber py-2.5 px-6 text-xs" data-testid="t-save">Save Testimonial</button>
+      </form>
+
+      <div className="grid md:grid-cols-2 gap-3">
+        {data.map((t) => (
+          <div key={t.id} className="bg-[#151515] border border-white/10 p-5" data-testid="testimonial-admin-card">
+            <div className="flex justify-between items-start gap-3">
+              <span className={`text-xs uppercase border px-2 py-0.5 ${t.published ? "text-green-400 border-green-400/40" : "text-white/40 border-white/20"}`}>{t.published ? "Live" : "Hidden"}</span>
+              <div className="flex gap-2">
+                <button onClick={() => edit(t)} className="btn-ghost py-1 px-3 text-xs" data-testid="t-edit">Edit</button>
+                <button onClick={() => togglePub(t)} className="btn-ghost py-1 px-3 text-xs">{t.published ? "Hide" : "Show"}</button>
+                <button onClick={() => del(t.id)} className="w-8 h-8 border border-white/15 flex items-center justify-center hover:border-[#FF3B30] hover:text-[#FF3B30] transition-colors" data-testid="t-delete"><Trash2 className="w-4 h-4" /></button>
+              </div>
+            </div>
+            <p className="text-white/70 text-sm mt-3">“{t.quote}”</p>
+            <div className="font-display text-xl mt-3">{t.name}</div>
+            {t.role && <div className="overline mt-0.5">{t.role}</div>}
+          </div>
+        ))}
+        {data.length === 0 && <p className="text-white/40">No testimonials yet.</p>}
       </div>
     </div>
   );

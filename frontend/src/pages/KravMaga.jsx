@@ -51,7 +51,8 @@ export default function KravMaga() {
 
         <Reveal delay={0.12}>
           <div className="relative crosshair">
-            <img src={IMAGES.kravTechnique} alt="Krav Maga wrist-lock technique" className="w-full object-cover img-grade border border-white/10 aspect-[3/4]" data-testid="krav-technique-image" />
+            <img src={IMAGES.kravTechnique} alt="Krav Maga wrist-lock technique" className="w-full object-cover border border-white/10 aspect-[3/4]" style={{ filter: "grayscale(45%) contrast(1.05) brightness(0.62)" }} data-testid="krav-technique-image" />
+            <div className="absolute inset-0 bg-[#0A0A0A]/30" />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#0A0A0A] to-transparent p-6 pt-16">
               <div className="overline">Live Technique</div>
               <div className="font-display text-3xl leading-none">Control. Leverage. Escape.</div>

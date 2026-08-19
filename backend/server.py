@@ -77,6 +77,12 @@ class ContentBlockInput(BaseModel):
     key: str
     value: str
 
+class TestimonialInput(BaseModel):
+    name: str
+    role: Optional[str] = None
+    quote: str
+    published: bool = True
+
 # ---------- Helpers ----------
 def serialize(doc: dict) -> dict:
     if not doc:
@@ -227,6 +233,34 @@ async def update_content(payload: ContentBlockInput, user: dict = Depends(get_cu
     await db.content_blocks.update_one({"key": payload.key}, {"$set": {"value": payload.value}}, upsert=True)
     return {"key": payload.key, "value": payload.value}
 
+# ---------- Testimonials ----------
+@api_router.get("/testimonials")
+async def list_testimonials(all: bool = False):
+    q = {} if all else {"published": True}
+    docs = await db.testimonials.find(q).sort("created_at", -1).to_list(1000)
+    return [serialize(d) for d in docs]
+
+@api_router.post("/testimonials")
+async def create_testimonial(payload: TestimonialInput, user: dict = Depends(get_current_user)):
+    doc = payload.model_dump()
+    doc["created_at"] = now_iso()
+    res = await db.testimonials.insert_one(doc)
+    doc["_id"] = res.inserted_id
+    return serialize(doc)
+
+@api_router.put("/testimonials/{tid}")
+async def update_testimonial(tid: str, payload: TestimonialInput, user: dict = Depends(get_current_user)):
+    await db.testimonials.update_one({"_id": ObjectId(tid)}, {"$set": payload.model_dump()})
+    doc = await db.testimonials.find_one({"_id": ObjectId(tid)})
+    if not doc:
+        raise HTTPException(status_code=404, detail="Testimonial not found")
+    return serialize(doc)
+
+@api_router.delete("/testimonials/{tid}")
+async def delete_testimonial(tid: str, user: dict = Depends(get_current_user)):
+    await db.testimonials.delete_one({"_id": ObjectId(tid)})
+    return {"message": "Deleted"}
+
 @api_router.get("/")
 async def root():
     return {"message": "360 Degree Secure API"}
@@ -284,6 +318,13 @@ async def startup():
             {"title": "Weapon Threat Response", "media_type": "image", "url": "/train5.jpg", "category": "Tactical", "created_at": now_iso()},
         ]
         await db.gallery.insert_many(seed_gallery)
+    if await db.testimonials.count_documents({}) == 0:
+        seed_testimonials = [
+            {"name": "Priya Sharma", "role": "Student, Guwahati", "quote": "I walked in nervous and walked out confident. The trial class alone changed how I carry myself every single day.", "published": True, "created_at": now_iso()},
+            {"name": "Inspector R. Das", "role": "Assam Police", "quote": "The UAC training was practical, intense and exactly what our personnel needed. No theatrics — just real capability.", "published": True, "created_at": now_iso()},
+            {"name": "Rahul Medhi", "role": "Corporate HR Lead", "quote": "Our team's travel-safety workshop was eye-opening. Professional, engaging and genuinely useful for everyone.", "published": True, "created_at": now_iso()},
+        ]
+        await db.testimonials.insert_many(seed_testimonials)
 
 @app.on_event("shutdown")
 async def shutdown():

@@ -12,6 +12,7 @@ export default function Footer() {
             <p className="text-white/50 text-sm leading-relaxed">
               Real-world safety, self-defense & tactical training. Founded by Anjan Gogoi.
             </p>
+            <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="h-9 w-auto object-contain mt-5 opacity-90" data-testid="footer-kma-logo" />
           </div>
 
           <div>
