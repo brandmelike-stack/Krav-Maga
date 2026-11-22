@@ -13,7 +13,7 @@ const PILLARS = [
 export default function About() {
   return (
     <div data-testid="about-page">
-      <PageHero overline="Who We Are" title="Safety Is Not a Product. It's a Discipline." subtitle="360 Degree Secure exists to make real-world safety accessible to everyone — from students to soldiers." image={IMAGES.martialDark} />
+      <PageHero overline="Who We Are" title="Safety Is Not a Product. It's a Discipline." subtitle="Krav Maga Assam exists to make real-world safety accessible to everyone — from students to soldiers." image={IMAGES.martialDark} />
 
       <section className="py-20 md:py-28 max-w-[1400px] mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16">
         <Reveal>

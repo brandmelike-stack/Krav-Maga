@@ -25,7 +25,7 @@ export default function Founder() {
         <Reveal delay={0.12} className="lg:col-span-3">
           <div className="overline mb-3">The Story</div>
           <h2 className="font-display text-4xl lg:text-5xl leading-[0.95] mb-6">Driven by a single belief: everyone deserves to feel safe.</h2>
-          <p className="text-white/60 leading-relaxed mb-4">Anjan Gogoi is a certified Krav Maga and tactical defense instructor with years of field-tested experience training civilians, corporates, and law enforcement personnel. He founded 360 Degree Secure to close the gap between how people think about safety and how threats actually unfold.</p>
+          <p className="text-white/60 leading-relaxed mb-4">Anjan Gogoi is a certified Krav Maga and tactical defense instructor with years of field-tested experience training civilians, corporates, and law enforcement personnel. He founded Krav Maga Assam — operating under his safety venture 360 Degree Secure — to close the gap between how people think about safety and how threats actually unfold.</p>
           <p className="text-white/60 leading-relaxed mb-8">His approach strips away ego and theatrics, focusing on what genuinely works under stress — and on building the mindset that makes those skills usable when it counts.</p>
 
           <div className="grid sm:grid-cols-3 gap-4">

@@ -8,11 +8,11 @@ export default function Footer() {
       <div className="max-w-[1400px] mx-auto px-5 md:px-8">
         <div className="grid md:grid-cols-4 gap-10">
           <div className="md:col-span-1">
-            <img src="/logo-dark.png" alt="360 Degree Secure" className="h-12 w-auto object-contain mb-4" />
+            <img src="/kma-light.png" alt="Krav Maga Assam" className="h-24 w-auto object-contain mb-4" />
             <p className="text-white/50 text-sm leading-relaxed">
-              Real-world safety, self-defense & tactical training. Founded by Anjan Gogoi.
+              Real-world self-defense, Krav Maga & tactical training in Assam. Founded by Anjan Gogoi.
             </p>
-            <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="h-9 w-auto object-contain mt-5 opacity-90" data-testid="footer-kma-logo" />
+            <p className="text-white/35 text-xs uppercase tracking-[0.18em] mt-4">A unit of 360 Degree Secure</p>
           </div>
 
           <div>
@@ -50,7 +50,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-xs text-white/40 uppercase tracking-wider">
-          <span>© {new Date().getFullYear()} 360 Degree Secure. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Krav Maga Assam · A unit of 360 Degree Secure. All rights reserved.</span>
           <Link to="/admin/login" className="hover:text-[#FFC107]" data-testid="admin-footer-link">Admin</Link>
         </div>
       </div>

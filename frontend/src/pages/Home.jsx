@@ -41,7 +41,7 @@ export default function Home() {
         <motion.img
           style={{ y: heroY, scale: heroScale }}
           src={IMAGES.founderDemo}
-          alt="360 Degree Secure live training demonstration"
+          alt="Krav Maga Assam live training demonstration"
           className="absolute inset-0 w-full h-full object-cover object-center img-grade"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A]/80 to-[#0A0A0A]/40" />
@@ -72,7 +72,7 @@ export default function Home() {
         <Marquee speed={45} gradient={false}>
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="font-display text-3xl md:text-4xl tracking-wide mx-8 text-white/80 flex items-center gap-8">
-              360° SECURE <span className="text-[#FFC107]">✦</span> READINESS IS A CHOICE <span className="text-[#FFC107]">✦</span>
+              KRAV MAGA ASSAM <span className="text-[#FFC107]">✦</span> READINESS IS A CHOICE <span className="text-[#FFC107]">✦</span>
             </span>
           ))}
         </Marquee>

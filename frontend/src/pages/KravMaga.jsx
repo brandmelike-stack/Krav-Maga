@@ -26,7 +26,7 @@ export default function KravMaga() {
 
       <section className="py-20 md:py-28 max-w-[1400px] mx-auto px-5 md:px-8 grid lg:grid-cols-2 gap-16 items-start">
         <Reveal>
-          <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="h-14 w-auto object-contain mb-8" data-testid="kma-logo" />
+          <img src="/kma-light.png" alt="Krav Maga Assam" className="h-28 w-auto object-contain mb-8" data-testid="kma-logo" />
           <div className="overline mb-3">What It Is</div>
           <h2 className="font-display text-4xl lg:text-5xl leading-[0.95] mb-5">No rules. No rituals. Just what works.</h2>
           <p className="text-white/60 leading-relaxed mb-4">Krav Maga is a combat system built on instinct, aggression and efficiency. There are no belts to chase and no forms to memorize — only techniques designed to neutralize threats and get you home safe.</p>

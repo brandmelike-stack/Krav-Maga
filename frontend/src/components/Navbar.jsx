@@ -22,7 +22,7 @@ export default function Navbar() {
     >
       <div className="max-w-[1400px] mx-auto px-5 md:px-8 flex items-center justify-between h-16 md:h-20">
         <Link to="/" className="flex items-center group" data-testid="logo-link">
-          <img src="/logo-dark.png" alt="360 Degree Secure" className="h-9 md:h-11 w-auto object-contain" />
+          <img src="/kma-light.png" alt="Krav Maga Assam" className="h-12 md:h-16 w-auto object-contain" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">

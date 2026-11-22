@@ -32,7 +32,7 @@ export default function Login() {
     <div className="min-h-screen bg-[#0A0A0A] grain flex items-center justify-center px-5 tac-grid" data-testid="admin-login-page">
       <div className="w-full max-w-md bg-[#151515] border border-white/10 p-8 md:p-10">
         <Link to="/" className="flex items-center mb-8">
-          <img src="/logo-dark.png" alt="360 Degree Secure" className="h-10 w-auto object-contain" />
+          <img src="/kma-light.png" alt="Krav Maga Assam" className="h-20 w-auto object-contain" />
         </Link>
         <div className="overline mb-2 flex items-center gap-2"><Lock className="w-4 h-4" /> Admin Access</div>
         <h1 className="font-display text-4xl mb-8">Command Console</h1>

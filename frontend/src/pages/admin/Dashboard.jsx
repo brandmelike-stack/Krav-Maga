@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "sonner";
-import { Crosshair, LogOut, Download, Trash2, Plus, Inbox, Calendar, Image as ImageIcon, FileText, ExternalLink, X, Quote } from "lucide-react";
+import { LogOut, Download, Trash2, Plus, Inbox, Calendar, Image as ImageIcon, FileText, ExternalLink, X, Quote } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import api from "../../lib/api";
 import { CATEGORY_LABELS } from "../../lib/data";
@@ -61,9 +61,8 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#0A0A0A] grain" data-testid="admin-dashboard">
       <header className="border-b border-white/10 bg-[#0A0A0A] sticky top-0 z-40">
         <div className="max-w-[1500px] mx-auto px-5 md:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2"><Crosshair className="w-5 h-5 text-[#FFC107]" strokeWidth={2.2} /><span className="font-display text-xl tracking-wide">360<span className="text-[#FFC107]">°</span> CONSOLE</span></Link>
-            <img src="/kma-logo-dark.png" alt="Krav Maga Assam" className="hidden md:block h-7 w-auto object-contain opacity-80 border-l border-white/10 pl-4" data-testid="admin-kma-logo" />
+          <div className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3"><img src="/kma-light.png" alt="Krav Maga Assam" className="h-10 w-auto object-contain" data-testid="admin-kma-logo" /><span className="font-display text-xl tracking-wide hidden sm:inline">Admin Console</span></Link>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-white/40 text-sm hidden sm:block">{user?.email}</span>
